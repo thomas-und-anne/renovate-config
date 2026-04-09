@@ -1,40 +1,59 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
 	"extends": [
-	  "config:recommended",
-	  ":rebaseStalePrs"
+		"config:recommended",
+		":rebaseStalePrs"
 	],
-	"baseBranches": ["main"],
+	"baseBranches": [
+		"main"
+	],
 	"packageRules": [
-	  {
-		"matchUpdateTypes": [
-		  "minor",
-		  "patch",
-		  "digest"
-		],
-		"automerge": true,
-		"automergeStrategy": "squash"
-	  },
-	  {
-		"matchDepTypes": [
-		  "devDependencies"
-		],
-		"automerge": true,
-		"automergeStrategy": "squash"
-	  },
-	  {
-		"matchUpdateTypes": [
-		  "major"
-		],
-		"automerge": false,
-		"labels": ["MAJOR-UPDATE"]
-	  }
+		{
+			"matchUpdateTypes": [
+				"minor",
+				"patch",
+				"digest"
+			],
+			"automerge": true,
+			"automergeStrategy": "squash"
+		},
+		{
+			"matchDepTypes": [
+				"devDependencies"
+			],
+			"automerge": true,
+			"automergeStrategy": "squash"
+		},
+		{
+			"matchUpdateTypes": [
+				"major"
+			],
+			"automerge": false,
+			"labels": [
+				"MAJOR-UPDATE"
+			]
+		}
+	],
+	"regexManagers": [
+		{
+			"fileMatch": [
+				"^\\.github/workflows/.*\\.(yml|yaml)$"
+			],
+			"matchStrings": [
+				"docker (?:run|rmi)[\\s\\S]*?\\s+(?<depName>[a-z][a-z0-9._/-]*):(?<currentValue>[0-9A-Za-z_.+-]+)"
+			],
+			"datasourceTemplate": "docker",
+			"versioningTemplate": "docker"
+		}
 	],
 	"timezone": "Europe/Berlin",
 	"schedule": [
-	  "after 10pm",
-	  "before 6am"
+		"after 10pm",
+		"before 6am"
 	],
 	"platformAutomerge": true,
-	"reviewers": ["desillusion"]
-  }
+	"reviewers": [
+		"desillusion"
+	],
+	"onboarding": false
+}
