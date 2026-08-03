@@ -32,6 +32,20 @@
 			"labels": [
 				"MAJOR-UPDATE"
 			]
+		},
+		{
+			"matchPackageNames": [
+				"actions/checkout"
+			],
+			"matchDatasources": [
+				"github-actions"
+			],
+			"automerge": true,
+			"automergeType": "branch",
+			"labels": [
+				"dependencies",
+				"github-actions"
+			]
 		}
 	],
 	"regexManagers": [
@@ -53,6 +67,9 @@
 	],
 	"platformAutomerge": true,
 	"reviewers": [
+		"desillusion"
+	],
+	"assignees": [
 		"desillusion"
 	],
 	"onboarding": false
